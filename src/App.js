@@ -1,17 +1,13 @@
-import Login from "./Pages/Login";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
 import './App.css';
+import { PrivateRoutes } from './Routes/PrivateRoutes';
+import { PublicRoutes } from './Routes/PublicRoutes';
+import { AuthContext } from './contexts/auth';
 
 function App() {
-  return (
-    <div className="app">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />}></Route>
-        </Routes>
-      </Router>
-    </div>
-  );
+  const { auth, setAuth } = useContext(AuthContext);
+
+  return auth ? <PrivateRoutes/> : <PublicRoutes/>
 }
 
 export default App;
